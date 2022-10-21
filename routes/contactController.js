@@ -32,7 +32,6 @@ exports.new = function (req, res) {
   });
 }; // Handle view contact info
 exports.view = function (req, res) {
-  console.log("33");
   Contact.findById(req.params.contact_id, function (err, contact) {
     if (err) res.send(err);
     res.json({
@@ -42,7 +41,6 @@ exports.view = function (req, res) {
   });
 }; // Handle update contact info
 exports.update = function (req, res) {
-  console.log("43");
   Contact.findById(req.params.contact_id, function (err, contact) {
     if (err) res.send(err);
     contact.name = req.body.name ? req.body.name : contact.name;
