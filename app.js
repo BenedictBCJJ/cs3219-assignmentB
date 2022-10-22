@@ -1,5 +1,5 @@
 var express = require("express");
-
+require("dotenv").config();
 let apiRoutes = require("./routes/api-routes");
 // Import Body parser
 let bodyParser = require("body-parser"); // Import Mongoose
@@ -17,10 +17,10 @@ app.use(
 );
 app.use(bodyParser.json());
 // Connect to Mongoose and set connection variable
-mongoose.connect("mongodb://localhost/resthub", { useNewUrlParser: true });
-
+// mongoose.connect("mongodb://localhost/resthub", { useNewUrlParser: true });
+let mongoDB = process.env.DB_CLOUD_URI;
 // Heroku Mongoose connection
-// mongoose.connect('mongodb://heroku_5686p02g:sia8l3fni4jmu7qbn0ac1t75mf@ds349857.mlab.com:49857/heroku_5686p02g', { useNewUrlParser: true });
+mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 var db = mongoose.connection;
 
