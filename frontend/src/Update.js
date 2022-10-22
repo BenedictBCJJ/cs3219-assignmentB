@@ -59,7 +59,7 @@ function Update() {
 
   return (
     <div>
-      <button onClick={update}>Create Entry</button>
+      <button onClick={update}>Update Entry</button>
       <Box
         component="form"
         sx={{

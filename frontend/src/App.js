@@ -5,6 +5,7 @@ import Quotes from "./GetAll.js";
 import GetSingular from "./GetOne";
 import Post from "./Post";
 import Update from "./Update";
+import Delete from "./Delete";
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
         <GetSingular />
         <Post />
         <Update />
+        <Delete />
       </header>
     </div>
   );
