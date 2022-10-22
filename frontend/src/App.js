@@ -6,6 +6,7 @@ import GetSingular from "./GetOne";
 import Post from "./Post";
 import Update from "./Update";
 import Delete from "./Delete";
+import AsianCurrency from "./AsianCurrency";
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
         <Post />
         <Update />
         <Delete />
+        <AsianCurrency />
       </header>
     </div>
   );
