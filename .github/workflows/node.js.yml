@@ -14,7 +14,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    environment: myenvironment 
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
@@ -41,4 +41,4 @@ jobs:
     - name: Invoke deployment hook
       uses: distributhor/workflow-webhook@v2
       env:
-        webhook_url: "${{ secrets.DEPLOY_HOOK }}"
+        webhook_url: ${{ secrets.DEPLOY_HOOK }}
