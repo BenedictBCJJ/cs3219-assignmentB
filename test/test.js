@@ -21,7 +21,7 @@ describe("Array", function () {
           done();
         });
     });
-  });
+  }).timeout(10000);
   describe("Get Singular", function () {
     it("Get one with id", function (done) {
       const contact = new Contact({
@@ -43,7 +43,7 @@ describe("Array", function () {
           });
       });
     });
-  });
+  }).timeout(10000);
   describe("Create one", function () {
     it("Get one with id", function (done) {
       const contact = new Contact({
@@ -63,7 +63,7 @@ describe("Array", function () {
           done();
         });
     });
-  });
+  }).timeout(10000);
   describe("Delete one", function () {
     it("Delete one with id", function (done) {
       const contact = new Contact({
@@ -84,7 +84,7 @@ describe("Array", function () {
             done();
           });
       });
-    });
+    }).timeout(10000);
     describe("Update one", function () {
       it("Update one with id", function (done) {
         const contact = new Contact({
@@ -113,7 +113,7 @@ describe("Array", function () {
               done();
             });
         });
-      });
+      }).timeout(10000);
     });
   });
 });
