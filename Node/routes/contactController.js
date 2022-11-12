@@ -22,9 +22,22 @@ exports.new = function (req, res) {
   contact.gender = req.body.gender;
   contact.email = req.body.email;
   contact.phone = req.body.phone; // save the contact and check for errors
+  var regexname = /^[a-zA-Z]*$/;
+  var regexemail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var num = 1;
+  if (req.body.phone !== "") {
+    num = Number(req.body.phone);
+  }
+  const verified =
+    regexname.test(contact.name) &&
+    regexemail.test(contact.email) &&
+    Number.isInteger(num);
+
   contact.save(function (err) {
     if (err) {
       res.json(err);
+    } else if (!verified) {
+      res.json("Verification of name, email or number failed");
     } else {
       res.json({
         message: "New contact created!",
@@ -53,13 +66,28 @@ exports.update = function (req, res) {
       contact.name = req.body.name ? req.body.name : contact.name;
       contact.gender = req.body.gender;
       contact.email = req.body.email;
-      contact.phone = req.body.phone; // save the contact and check for errors
+      contact.phone = req.body.phone;
+      var regexname = /^[a-zA-Z]*$/;
+      var regexemail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      var num = 1;
+      if (req.body.phone !== "") {
+        num = Number(req.body.phone);
+      }
+      const verified =
+        regexname.test(contact.name) &&
+        regexemail.test(contact.email) &&
+        Number.isInteger(num); // save the contact and check for errors
       contact.save(function (err) {
-        if (err) res.json(err);
-        res.json({
-          message: "Contact Info updated",
-          data: contact,
-        });
+        if (err) {
+          res.json(err);
+        } else if (!verified) {
+          res.json("Verification of name, email or number failed");
+        } else {
+          res.json({
+            message: "Contact Info updated",
+            data: contact,
+          });
+        }
       });
     }
   });
@@ -73,12 +101,18 @@ exports.delete = function (req, res) {
       if (err) {
         res.send(err);
       } else {
-        res.json({
-          status: "success",
-          message: "Contact deleted",
-        });
+        if (contact["deletedCount"] > 0) {
+          res.json({
+            status: "success",
+            message: "Contact deleted",
+          });
+        } else {
+          res.json({
+            status: "Failure",
+            message: "Contact not found",
+          });
+        }
       }
     }
   );
-  //test
 };
