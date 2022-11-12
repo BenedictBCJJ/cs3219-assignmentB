@@ -101,10 +101,17 @@ exports.delete = function (req, res) {
       if (err) {
         res.send(err);
       } else {
-        res.json({
-          status: "success",
-          message: "Contact deleted",
-        });
+        if (contact["deletedCount"] > 0) {
+          res.json({
+            status: "success",
+            message: "Contact deleted",
+          });
+        } else {
+          res.json({
+            status: "Failure",
+            message: "Contact not found",
+          });
+        }
       }
     }
   );
