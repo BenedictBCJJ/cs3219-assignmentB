@@ -44,10 +44,10 @@ describe("Array", function () {
   describe("Create one", function () {
     it("Get one with id", function (done) {
       const contact = new Contact({
-        name: "name2",
-        email: "mail2",
-        phone: "phone2",
-        gender: "gender2",
+        name: "name",
+        email: "mail@mail.com",
+        phone: "12345",
+        gender: "male",
       });
       chai
         .request(app)
@@ -64,10 +64,10 @@ describe("Array", function () {
   describe("Delete one", function () {
     it("Delete one with id", function (done) {
       const contact = new Contact({
-        name: "name2",
-        email: "mail2",
-        phone: "phone2",
-        gender: "gender2",
+        name: "name",
+        email: "mail@mail.com",
+        phone: "12345",
+        gender: "male",
       });
       contact.save((err, contact) => {
         // console.log(contact);
@@ -86,16 +86,16 @@ describe("Array", function () {
   describe("Update one", function () {
     it("Update one with id", function (done) {
       const contact = new Contact({
-        name: "name2",
-        email: "mail2",
-        phone: "phone2",
-        gender: "gender2",
+        name: "nameaaaa",
+        email: "mail@mail.com",
+        phone: "12345213314213",
+        gender: "female",
       });
       const contact1 = new Contact({
-        name: "name1",
-        email: "mail1",
-        phone: "phone1",
-        gender: "gender1",
+        name: "namesdfds",
+        email: "mail@mail.com",
+        phone: "12345123431",
+        gender: "male",
       });
 
       contact.save((err, contact) => {
