@@ -16,6 +16,7 @@ function processData(country, symbol) {
 function AsianCurrency() {
   const [rows, setRows] = useState([]);
   useEffect(() => {
+    console.log("runs");
     axios
       .get(
         "http://asia-southeast1-vivid-now-366312.cloudfunctions.net/all_currency",
@@ -30,8 +31,9 @@ function AsianCurrency() {
 
         let payload = response.data;
         Object.keys(payload).forEach(function (key) {
-          tempRow.push(processData(key, payload[key]));
+          tempRow.push(processData(payload[key], key));
         });
+        console.log(tempRow);
         setRows(tempRow);
       });
   }, []);
@@ -42,7 +44,7 @@ function AsianCurrency() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Country</TableCell>
+              <TableCell>Currency Name</TableCell>
               <TableCell align="right">Currency Symbol</TableCell>
             </TableRow>
           </TableHead>
@@ -53,8 +55,9 @@ function AsianCurrency() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.symbol}
+                  {row.country}
                 </TableCell>
+                <TableCell align="right">{row.symbol}</TableCell>
               </TableRow>
             ))}
           </TableBody>
